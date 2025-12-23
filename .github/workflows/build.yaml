@@ -11,8 +11,8 @@ jobs:
     name: Build on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false # This prevents the Mac build from stopping if Linux fails
       matrix:
-        # This runs two builds in parallel
         os: [macos-latest, ubuntu-latest]
 
     steps:
@@ -24,11 +24,13 @@ jobs:
       with:
         java-version: '25'
         distribution: 'oracle'
-        cache: 'ant'
+        # Removed the 'cache: ant' line to fix the error
 
-    - name: Install Ant
+    - name: Install Linux Dependencies
       if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install -y ant fakeroot dpkg-dev
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ant fakeroot dpkg-dev
 
     - name: Run Ant Package
       run: ant package
@@ -38,4 +40,3 @@ jobs:
       with:
         name: ${{ matrix.os }}-installer
         path: dist/*
-        
