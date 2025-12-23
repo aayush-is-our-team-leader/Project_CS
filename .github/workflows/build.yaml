@@ -1,0 +1,41 @@
+name: Build Native Installers
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # This runs two builds in parallel
+        os: [macos-latest, ubuntu-latest]
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 25
+      uses: actions/setup-java@v4
+      with:
+        java-version: '25'
+        distribution: 'oracle'
+        cache: 'ant'
+
+    - name: Install Ant
+      if: runner.os == 'Linux'
+      run: sudo apt-get update && sudo apt-get install -y ant fakeroot dpkg-dev
+
+    - name: Run Ant Package
+      run: ant package
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.os }}-installer
+        path: dist/*
+        
