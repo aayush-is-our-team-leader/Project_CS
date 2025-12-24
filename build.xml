@@ -11,6 +11,17 @@
   <property name="dist.dir"    value="dist"/>
   <property name="docs.dir"    value="build/docs"/>
 
+  <!-- Javadoc external API links. Uses the JDK running Ant; no hard-coded Java version. -->
+  <condition property="javadoc.api.url" value="https://docs.oracle.com/javase/8/docs/api/">
+    <equals arg1="${java.specification.version}" arg2="1.8"/>
+  </condition>
+  <condition property="javadoc.api.url" value="https://docs.oracle.com/en/java/javase/${java.specification.version}/docs/api/">
+    <not>
+      <equals arg1="${java.specification.version}" arg2="1.8"/>
+    </not>
+  </condition>
+
+
   <condition property="isMac">
     <os family="mac"/>
   </condition>
@@ -26,12 +37,20 @@
     <isset property="isMac"/>
   </condition>
 
+  <target name="preflight" description="Print toolchain/OS info">
+    <echo message="Java: ${java.runtime.name} ${java.runtime.version}"/>
+    <echo message="Java Vendor: ${java.vendor}"/>
+    <echo message="Java Home: ${java.home}"/>
+    <echo message="Java Spec Version: ${java.specification.version}"/>
+    <echo message="OS: ${os.name} ${os.version} (${os.arch})"/>
+  </target>
+
   <target name="clean" description="Remove all build and distribution files">
     <delete dir="build"/>
     <delete dir="${dist.dir}"/>
   </target>
 
-  <target name="compile" description="Compile Java source code">
+  <target name="compile" depends="preflight" description="Compile Java source code">
     <mkdir dir="${build.dir}"/>
     <javac srcdir="${src.dir}"
            destdir="${build.dir}"
@@ -53,14 +72,26 @@
     <java jar="${jar.dir}/${app.name}.jar" fork="true"/>
   </target>
 
-  <target name="javadoc" description="Generate API documentation with Javadoc">
+  <target name="javadoc" depends="preflight" description="Generate Javadoc (works for unnamed or named packages)">
     <mkdir dir="${docs.dir}"/>
     <javadoc destdir="${docs.dir}"
-             sourcepath="${src.dir}"
-             packagenames="*"
+             source="1.8"
+             encoding="UTF-8"
              use="true"
              author="true"
-             version="true"/>
+             version="true"
+             failonerror="true">
+      <fileset dir="${src.dir}" includes="**/*.java"/>
+
+      <link href="${javadoc.api.url}"/>
+      <!-- Uncomment to resolve references in Javadoc comments. -->
+      <!--
+          <classpath>
+          <pathelement path="${build.dir}"/>
+          <fileset dir="lib" includes="**/*.jar"/>
+          </classpath>
+      -->
+    </javadoc>
   </target>
 
   <target name="package" description="Build the native installer for the current OS (DMG or DEB)">
@@ -79,7 +110,6 @@
       <arg value="--type"/><arg value="dmg"/>
       <arg value="--icon"/><arg value="${icon.file}"/>
       <arg value="--app-version"/><arg value="${app.version}"/>
- 
       <arg value="--mac-package-name"/><arg value="${app.name}"/>
       <arg value="--mac-package-identifier"/><arg value="com.example.${app.name}"/>
     </exec>
