@@ -23,5 +23,4 @@ Team Name:TeamJAGD
 ## 4. Accountability
 *How we want to be approached when a mistake happens:*
 - **Private First**: Reach out via DM to check-in before bringing issues to the group.
-- **Member A**: [Preferred contact method, e.g., "Discord DM"]
-- **Member B**: [Preferred contact method, e.g., "Text message"]
+-
