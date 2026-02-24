@@ -1,5 +1,5 @@
-﻿# Team Foundation Notes
-Team Name:TeamJAGD
+﻿# Team Foundation Notes :fishsticks:
+Team Name:TeamJAGD 
 ## 1. Team Experience
 *Member Name*: Aayush, Gage,  Jorge, Devna
 *Summary of Positive Attributes*:
