@@ -6,7 +6,7 @@ In this repor we are making a wordel kinda game like logic using the python wher
 ## have fun
 
 ## Vision Statement -
-#### For: Bored, young and passionate students
+#### For: Bored, young, and passionate students
 #### Who: English-learning opportunists
 #### The: Wordy is an English vocabulary improvement entertainment program
 #### That: Learn 5-letter English words in a playful way
