@@ -12,12 +12,12 @@ In this repor we are making a wordel kinda game like logic using the python wher
 #### That: Learn 5-letter English words in a playful way
 #### Unlike: Wordle, because we make it more fun with cool graphics (gen-z targeted)
 
-#### For (target customer)
-#### Who (statement of the need or opportunity)
-#### The (product name) is a (product category)
-#### That (key benefit, compelling reason to buy)
-#### Unlike (primary competitive alternative)
-#### Our product (statement of primary differentiation)
+/* For (target customer)
+Who (statement of the need or opportunity)
+The (product name) is a (product category)
+That (key benefit, compelling reason to buy)
+Unlike (primary competitive alternative)
+Our product (statement of primary differentiation) */
 
 
 ## User story - 
