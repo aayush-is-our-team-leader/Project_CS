@@ -5,7 +5,7 @@ In this repor we are making a wordel kinda game like logic using the python wher
 ##You have to guss teh 5 character word
 ## have fun
 
-Vision Statement -
+## Vision Statement -
 For:
 Who:
 The:
@@ -20,6 +20,11 @@ Unlike (primary competitive alternative)
 Our product (statement of primary differentiation)
 
 
+## User story - 
+As a:
+I want:
+So that:
+Acceptance:
 
 
 @Team Element
