@@ -1,8 +1,8 @@
-In this repor we are making a wordel kinda game like logic using the python where you can play that game where you have to guess teh word.
+In this report, we are making a wordel kinda game like logic, using the python, where you can play a game where you have to guess the word.
 
 
-## the size of word will be 5
-##You have to guss teh 5 character word
+## the size of the word will be 5
+##You have to guess the 5-character word
 ## have fun
 
 ## Vision Statement -
