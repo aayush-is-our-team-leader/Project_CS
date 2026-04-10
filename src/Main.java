@@ -18,17 +18,23 @@ public class Main {
      * @param args ignored
      */
     public static void main(String[] args) {
+
+        // ensures user gets 5 tries at the start
         int a = 0;
         while(a < 5 ){
             askUserforInput();
             a = a + 1;
         }
         
-        exitMessage();
+        exitMessage(); //outputs exiting woldly program to user
        
 
     }
-       // function definitions below
+       // all the function definitions are found below
+
+        // this is function displays a pop up to notify the user they exceeded 5 letters
+        // I made slight modifications to the code already provided that displayed a message
+        // saying "Hello from Java"
          public static void outputBox(String userWord){
                 JFrame frame = new JFrame("Wordly");
                 JLabel label = new JLabel("Your word: " + userWord 
@@ -43,6 +49,7 @@ public class Main {
                 frame.setVisible(true);
         }
 
+        // This function is used to exit the terminal program
         public static void exitMessage(){
 
              Scanner myScannerObjtoExit = new Scanner(System.in); //created scanner object
@@ -60,9 +67,10 @@ public class Main {
                     exitMessage();
                 }
                     
-                
                 }
-        
+
+        // this function obtains user input then displays it back to the user, and checks for 
+        // word length, if 5 letters are exceeded the function that displays a pop up is called
         public static void askUserforInput(){
                  Scanner myScannerObj = new Scanner(System.in); //created scanner object
                  System.out.println("Enter a five letter word"); //
